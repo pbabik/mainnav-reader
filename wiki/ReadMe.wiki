@@ -1,0 +1,33 @@
+#summary readme
+
+= Installation =
+
+To Install, download the latest version, extract the archive and run as root:
+
+{{{python setup.py install}}}
+
+Note: mainnav-reader needs pySerial (python-serial on some distros) to run.
+
+
+= Usage =
+
+To test the connection, type in:
+
+{{{mainnav-reader --verbose /dev/ttyUSB0}}}
+
+Or, if the GPS device is connected via Bluetooth (Note: Be sure you have a connection to the serial-port prepared):
+
+{{{mainnav-reader --verbose /dev/rfcomm0}}}
+
+The simplest way to download the tracklogs is:
+
+{{{mainnav-reader --download /dev/ttyUSB0}}}
+
+or for short:
+
+{{{mainnav-reader -d /dev/ttyUSB0}}}
+
+For more options take a look at he help page via:
+
+
+{{{mainnav-reader --help}}}
