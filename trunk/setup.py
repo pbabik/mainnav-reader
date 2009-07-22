@@ -34,7 +34,7 @@ setup(
      version='0.1',
      author='Dennis Keitzel',
      author_email='dennis.keitzel@arcor.de',
-     homepage='http://code.google.com/p/mainnav-reader/',
+     url='http://code.google.com/p/mainnav-reader/',
      description='This little tool has the ability to read out and delete tracklog data from mainnav gps devices',
      license='BSD',
      packages=['mainnav_reader'],
