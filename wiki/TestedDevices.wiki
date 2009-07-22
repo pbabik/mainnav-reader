@@ -1,0 +1,10 @@
+#summary a list of devices that has been tested with mainnav-reader.
+
+== Works with: ==
+
+ * Mainnav MG-950d
+ * ..
+
+== Do not works with: ==
+
+ * ..
