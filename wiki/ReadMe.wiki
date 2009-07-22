@@ -1,4 +1,4 @@
-#summary readme
+#summary short installation and usage instructions
 
 = Installation =
 
