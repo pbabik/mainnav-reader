@@ -1,4 +1,5 @@
 #summary short installation and usage instructions
+#labels Featured,Phase-Deploy
 
 = Installation =
 
