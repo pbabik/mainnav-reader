@@ -1,0 +1,10 @@
+LICENSE
+README
+mainnav-reader
+setup.py
+mainnav_reader/__init__.py
+mainnav_reader/communication.py
+mainnav_reader/gpx.py
+mainnav_reader/helper.py
+mainnav_reader/mainnav_reader.py
+mainnav_reader/parser.py
