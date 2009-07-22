@@ -1,4 +1,5 @@
 #summary a list of devices that has been tested with mainnav-reader.
+#labels Featured
 
 == Works with: ==
 
