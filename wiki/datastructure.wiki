@@ -59,4 +59,5 @@ Each time entry (32 bit):
 
 Note: It seems, that the chunk, next to the last with '\x04$FINISH\r\n', don't
       contain any necessary informations (0xFF all the way).
+
 }}}
