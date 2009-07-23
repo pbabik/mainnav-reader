@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# mainnav-reader - Version: 0.1 
+# mainnav-reader - Version: 0.2
 #
 # Copyright (c) 2009, Dennis Keitzel
 # All rights reserved.

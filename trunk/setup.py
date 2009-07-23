@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# mainnav-reader - Version: 0.1 
+# mainnav-reader - Version: 0.2
 #
 # Copyright (c) 2009, Dennis Keitzel
 # All rights reserved.
@@ -31,7 +31,7 @@ from distutils.core import setup
 
 setup(
      name='mainnav-reader',
-     version='0.1',
+     version='0.2',
      author='Dennis Keitzel',
      author_email='dennis.keitzel@arcor.de',
      url='http://code.google.com/p/mainnav-reader/',

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# mainnav-reader - Version: 0.1 
+# mainnav-reader - Version: 0.2
 #
 # Copyright (c) 2009, Dennis Keitzel
 # All rights reserved.
@@ -29,7 +29,7 @@
 import time
 try:
 	import serial
-except ImportError as e:
+except ImportError, e:
 	raise SystemExit(e)
 
 from parser import _convert_4_byte_big_endian_to_uint as convert_logsize_value
@@ -65,7 +65,7 @@ class Connection():
 				parity=serial.PARITY_NONE,
 				stopbits=serial.STOPBITS_ONE,
 				bytesize=serial.EIGHTBITS)
-		except serial.serialutil.SerialException as e:
+		except serial.serialutil.SerialException, e:
 			die('error: %s' % e)
 		self.logsize = 0
 		self.dl_waittime = 0.1 if slow else 0.03
