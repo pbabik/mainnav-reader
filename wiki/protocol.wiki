@@ -2,7 +2,7 @@
 {{{
 MAINNAV MG-950d serial port communication protocol                     Version 1
 
-Based on 'Mainnav MD-950d serial port log'::
+Based on 'Mainnav MD-950d serial port log':
 http://opcenter.de/pub/misc/mainnav-log.html
 
 Additions by Dennis Keitzel
