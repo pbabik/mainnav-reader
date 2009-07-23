@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# mainnav-reader - Version: 0.1 
+# mainnav-reader - Version: 0.2
 #
 # Copyright (c) 2009, Dennis Keitzel
 # All rights reserved.
@@ -28,8 +28,12 @@
 #
 import struct
 import datetime
+import sys
 
 from helper import verbose
+
+if sys.version_info < (2, 6):
+	from helper import int2bin as bin
 
 def parse(data, logsize):
 	'''Main parse function to extract the needed information out of the binary

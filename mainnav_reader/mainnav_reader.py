@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# mainnav-reader - Version: 0.1 
+# mainnav-reader - Version: 0.2
 #
 # Copyright (c) 2009, Dennis Keitzel
 # All rights reserved.
@@ -73,7 +73,7 @@ def run():
 
 def _parse_args():
 	'''Parse the command-line arguments.'''
-	parser = OptionParser(usage='%prog [Options] <device>', version='%prog 0.1')
+	parser = OptionParser(usage='%prog [Options] <device>', version='%prog 0.2')
 	parser.add_option('-p', '--purge',
 		dest='purge',
 		help='purge the tracklog memory on the device',
@@ -124,12 +124,12 @@ def _write(datas, path):
 	@param path: The target directory.'''
 	try:
 		os.chdir(path)
-	except OSError as e:
+	except OSError, e:
 		if path == '%s/mainnav-tracklogs/' % os.environ.get('HOME', tempfile.gettempdir()):
 			try:
 				os.mkdir(path)
 				os.chdir(path)
-			except OSError as e:
+			except OSError, e:
 				die(e)
 		else:
 			die(e)
@@ -140,7 +140,7 @@ def _write(datas, path):
 		try:
 			os.mkdir(folder)
 			os.chdir(folder)
-		except OSError as e:
+		except OSError, e:
 			die('error while creating folder: \'%s\'' % folder)
 	i = 1
 	for data in datas:
@@ -156,7 +156,7 @@ def _write(datas, path):
 				filename = '%s_another.%s' % (filename[:-4], filename[-3:])
 			fd = open(filename, 'w')
 			fd.write(data[0])
-		except OSError as e:
+		except OSError, e:
 			die(e)
 		finally:
 			fd.close()

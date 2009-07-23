@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# mainnav-reader - Version: 0.1 
+# mainnav-reader - Version: 0.2
 #
 # Copyright (c) 2009, Dennis Keitzel
 # All rights reserved.
@@ -51,3 +51,18 @@ def die(msg):
 	
 	@param msg: The message.'''
 	raise SystemExit(msg)
+
+
+# int2bin for python < 2.6
+
+def int2bin(n):
+    '''convert denary integer n to binary string b.
+    
+    @param n: the denary integer.'''
+    b = ''
+    if n < 0:  raise ValueError, 'must be a positive integer'
+    if n == 0: return '0'
+    while n > 0:
+        b = '%s%s' % (str(n % 2), b)
+        n = n >> 1
+    return b
