@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# mainnav-reader - Version: 0.2
+# mainnav-reader - Version: 0.3
 #
 # Copyright (c) 2009, Dennis Keitzel
 # All rights reserved.
@@ -66,3 +66,16 @@ def int2bin(n):
         b = '%s%s' % (str(n % 2), b)
         n = n >> 1
     return b
+
+def check_requirements():
+	'''Check if all requirements are met.'''
+	# Python
+	version = sys.version_info
+	if version < (2, 5) or version >= (3, 0):
+		die('Python version not supported, use Python-2.5 or above. Python 3 is not supported.')
+	
+	# pySerial / python-serial
+	try:
+		import serial
+	except ImportError:
+		die('Module \'serial\' from pySerial (python-serial on some distributions) is needed.')

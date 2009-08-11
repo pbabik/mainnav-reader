@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# mainnav-reader - Version: 0.2
+# mainnav-reader - Version: 0.3
 #
 # Copyright (c) 2009, Dennis Keitzel
 # All rights reserved.
@@ -27,11 +27,17 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
+import sys
 from distutils.core import setup
+
+from mainnav_reader.helper import check_requirements
+
+if sys.argv[1] == 'install':
+	check_requirements()
 
 setup(
      name='mainnav-reader',
-     version='0.2',
+     version='0.3',
      author='Dennis Keitzel',
      author_email='dennis.keitzel@arcor.de',
      url='http://code.google.com/p/mainnav-reader/',

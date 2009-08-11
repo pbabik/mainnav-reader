@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# mainnav-reader - Version: 0.2
+# mainnav-reader - Version: 0.3
 #
 # Copyright (c) 2009, Dennis Keitzel
 # All rights reserved.
@@ -37,7 +37,7 @@ def create_gpx_structure(track):
 
 	gpx = doc.createElement('gpx')
 	gpx.setAttribute('version', '1.1')
-	gpx.setAttribute('creator', 'mainnav-reader (version 0.2) - http://code.google.com/p/mainnav-reader/')
+	gpx.setAttribute('creator', 'mainnav-reader (version 0.3) - http://code.google.com/p/mainnav-reader/')
 	gpx.setAttribute('xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance')
 	gpx.setAttribute('xmlns', 'http://www.topografix.com/GPX/1/1')
 	gpx.setAttribute('xsi:schemaLocation', 'http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd')

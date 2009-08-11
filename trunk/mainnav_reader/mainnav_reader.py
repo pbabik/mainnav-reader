@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# mainnav-reader - Version: 0.2
+# mainnav-reader - Version: 0.3
 #
 # Copyright (c) 2009, Dennis Keitzel
 # All rights reserved.
@@ -40,6 +40,7 @@ import gpx
 
 def run():
 	'''Main function.'''
+	helper.check_requirements()
 	args = _parse_args()
 	helper.verbose_ = args.verbose
 	con = communication.Connection(args.device, args.slow)
@@ -73,7 +74,7 @@ def run():
 
 def _parse_args():
 	'''Parse the command-line arguments.'''
-	parser = OptionParser(usage='%prog [Options] <device>', version='%prog 0.2')
+	parser = OptionParser(usage='%prog [Options] <device>', version='%prog 0.3')
 	parser.add_option('-p', '--purge',
 		dest='purge',
 		help='purge the tracklog memory on the device',
