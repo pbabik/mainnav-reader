@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# mainnav-reader - Version: 0.2
+# mainnav-reader - Version: 0.3
 #
 # Copyright (c) 2009, Dennis Keitzel
 # All rights reserved.
@@ -27,14 +27,11 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 import time
-try:
-	import serial
-except ImportError, e:
-	raise SystemExit(e)
+import serial
 
 from parser import _convert_4_byte_big_endian_to_uint as convert_logsize_value
-from helper import verbose
 from helper import die
+from helper import verbose
 from helper import fprint
 
 #commands
@@ -68,7 +65,7 @@ class Connection():
 		except serial.serialutil.SerialException, e:
 			die('error: %s' % e)
 		self.logsize = 0
-		self.dl_waittime = 0.1 if slow else 0.03
+		self.dl_waittime = 0.1 if slow else 0.05
 
 	def _communicate(self, command, waittime=1, answer=True):
 		'''Talk to the device and return the answer.

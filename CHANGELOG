@@ -1,2 +1,3 @@
+0.3 (dev) - check requirements before compiling and program start
 0.2 - Lowered Python dependency from version 2.6 to 2.5
 0.1 - Initial release
