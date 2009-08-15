@@ -1,5 +1,5 @@
-0.3 (dev): - check requirements before compiling and program start
-           - fixed interpretation of elevation data
+0.3 (dev): - Check requirements before compiling and program start
+           - Fixed interpretation of elevation data
            
 0.2: - Lowered Python dependency from version 2.6 to 2.5
 
