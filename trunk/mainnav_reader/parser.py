@@ -97,23 +97,43 @@ def _interprete_tracks_raw(tracks_raw):
 	tracks = []
 	for track_raw in tracks_raw:
 		track = []
-		last_elevation = 0
 		for point_raw in track_raw:
 			point = {}
 			point['time'] = _convert_time(point_raw[0:4])
 			point['longitude'] = _convert_4_byte_little_endian_to_float(point_raw[4:8])
 			point['latitude'] = _convert_4_byte_little_endian_to_float(point_raw[8:12])
-			point['speed'] = _convert_9_bit_big_endian_to_int(point_raw[12:14])
-			point['elevation'] = last_elevation = _get_elevation(point_raw[14:16], last_elevation)
+			point['speed'] = _convert_speed(point_raw[12:14])
+			point['elevation'] = _convert_elevation(point_raw[13:15])
 			track.append(point)
 		tracks.append(track)
 	return tracks
 
-def _get_elevation(bin_data, last_elevation):
-	'''If there is only a 3D-fix, return the last available elevation.'''
-	elevation = _convert_2_byte_little_endian_to_uint(bin_data)
-	return last_elevation if elevation == 255 else elevation # 255 means 2D-fix
+def _convert_speed(bin_data):
+	'''Convert the speed from 9 bit binary big endian to int in km/h. The input
+	has the size of 2 byte, but only the first 9 bit are interpreted.
+	
+	@param bin_data: 2 byte binary data.'''
+	return ord(bin_data[0]) + int(bin(ord(bin_data[1]))[:3], 2)
 
+def _convert_elevation(bin_data):
+	'''Convert the elevation from 15 bit binary big endian to signed int. Only
+	the last 15 bit are taken from the 2 byte input.
+	
+	@param bin_data: 2 byte binary data.'''
+	chunk_one = bin(ord(bin_data[0]))[2:]
+	chunk_one = '%s%s' % ((8-len(chunk_one))*'0', chunk_one)
+	chunk_one = chunk_one[1:]
+	chunk_two = bin(ord(bin_data[1]))[2:]
+	chunk_two = '%s%s' % ((8-len(chunk_two))*'0', chunk_two)
+	bit_string = '%s%s' % (chunk_one, chunk_two)
+	if bit_string.startswith('1'): # negative, build two-complement
+		result = ''
+		for char in bit_string:
+			result = '%s%s' % (result, '1' if char == '0' else '0')
+		return -(int(result, 2) + 1)
+	else: # positive
+		return int(bit_string, 2)
+		
 def _convert_time(data):
 	'''Convert the binary time to a datetime object and return it.
 	
@@ -131,7 +151,7 @@ def _convert_time(data):
 	return datetime.datetime(year, month, day, hour, minute, second)
 
 
-# binary to data-type functions:
+# common binary to data-type functions:
 
 def _convert_4_byte_big_endian_to_uint(data):
 	return struct.unpack('>I', data)[0]
@@ -141,9 +161,3 @@ def _convert_3_byte_little_endian_to_uint(data):
 
 def _convert_4_byte_little_endian_to_float(data):
 	return struct.unpack('<f', data)[0]
-
-def _convert_9_bit_big_endian_to_int(data):
-	return ord(data[0]) + int(bin(ord(data[1]))[:3], 2)
-
-def _convert_2_byte_little_endian_to_uint(data):
-	return struct.unpack('<H', data)[0]
