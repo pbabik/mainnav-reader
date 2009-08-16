@@ -54,7 +54,7 @@ class Connection():
 	
 	@param port: The path to the port which represents the device.
 	@param slow: If set, the download-speed gets decreased.'''
-	def __init__(self, port, slow):
+	def __init__(self, port):
 		try:
 			self.ser = serial.Serial(
 				port=port,
@@ -65,18 +65,25 @@ class Connection():
 		except serial.serialutil.SerialException, e:
 			die('error: %s' % e)
 		self.logsize = 0
-		self.dl_waittime = 0.1 if slow else 0.05
 
-	def _communicate(self, command, waittime=1, answer=True):
+	def _communicate(self, command, answer=True, bytes=None):
 		'''Talk to the device and return the answer.
 		
 		@param command: The command being send.
-		@param waittime: Time to sleep, before the answer is being red.
-		@param answer: Set this to False, if you no answer is needed.'''
+		@param answer: Set this to False, if no answer is needed.
+		@param bytes: wait until this many bytes are received.'''
 		self.ser.write(command)
-		time.sleep(waittime)
+		if not bytes:
+			time.sleep(1)
 		if answer:
-			return self.ser.read(self.ser.inWaiting())
+			buf = ''
+			if bytes:
+				while(len(buf) != bytes):
+					buf += self.ser.read()
+			else:
+				while(self.ser.inWaiting()):
+					buf += self.ser.read()
+			return buf
 
 	def open_connection(self):
 		'''Open the connection to the device.'''
@@ -108,25 +115,21 @@ class Connection():
 	def download_data(self):
 		'''Download all tracklogs from the device.'''
 		verbose('switching device to download mode.. ', newline=False)
+		trackpoints = (self.logsize + 256) / 128
+		current_track = 0
 		if OK in self._communicate(INIT_DOWNLOAD):
 			verbose('ok')
 			buf = ''
-			newline = ''
 			while True:
-				internal_buf = self._communicate(DOWNLOAD_CHUNK, waittime=self.dl_waittime)
-				if FINISH in internal_buf:
-					break
-				if len(internal_buf) != 132:
-					print('%serror: connection is too slow, retrying with decreased speed..' % newline)
-					if ABORTED in self._communicate(ABORT_TRANSMISSION):
-						self.dl_waittime += 0.03
-						return self.download_data()
-					else:
-						die('error while downloading tracklogs')
-				else:
+				if current_track < trackpoints: # there is some data left
+					current_track += 1
+					buf += self._communicate(DOWNLOAD_CHUNK, bytes=132)[3:-1]
 					fprint('\rdownloading: %s%%' % int((len(buf) / float(self.logsize)) * 100), newline=False)
-					buf += internal_buf[3:-1]
-					newline = '\n'
+				else:
+					if FINISH in self._communicate(DOWNLOAD_CHUNK, bytes=10):
+						break
+					else:
+						die('\nerror while downloading tracklogs')
 			fprint('')
 			verbose('switching device back to standard mode.. ', newline=False)
 			self._communicate(INIT_STANDARD, answer=False)
@@ -138,7 +141,7 @@ class Connection():
 	def purge_log_on_device(self):
 		'''Delete all tracklogs from the device.'''
 		fprint('purge log on device.. ', newline=False)
-		buf = self._communicate(PURGE_LOG, waittime=1)
+		buf = self._communicate(PURGE_LOG)
 		if OK not in buf:
 			die('error while trying to purge the log')
 		else:
