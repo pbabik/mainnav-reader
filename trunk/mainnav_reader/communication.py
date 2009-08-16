@@ -108,9 +108,11 @@ class Connection():
 		verbose('checking device status.. ', newline=False)
 		buf = self._communicate(CHECK_STATUS)
 		success = True if OK in buf else False
-		verbose('ok' if success else 'error: is the device turned on?')
 		if success:
+			verbose('ok')
 			self.logsize = convert_logsize_value(buf[-4:])
+		else:
+			fprint('error: is the device turned on?')
 		return success
 
 	def download_data(self):
