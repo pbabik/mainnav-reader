@@ -1,4 +1,4 @@
-MAINNAV MG-950d datastructure of tracklog data                         Version 1
+MAINNAV MG-950d datastructure of tracklog data                         Version 2
 
 Reverse engineered by Dennis Keitzel
 
@@ -34,13 +34,14 @@ multiple log entries, each of them has 16 byte.
 
 Each log entry (16 byte):
 
- offset   | size   | endian | type  | denotation
-----------+--------+--------+-------+-------------------------------------------
-0x00-0x03 | 32 bit | -      | -     | time, see beneath
-0x04-0x07 | 32 bit | little | float | longitude
-0x08-0x0b | 32 bit | little | float | latitude
-0x0c+1bit |  9 bit | big    | int   | speed (remaining 7 bit not used?)
-0x0e-0x0f | 16 bit | little | int   | elevation
+ offset        | size   | endian | type  | denotation
+---------------+--------+--------+-------+--------------------------------------
+0x00-0x03      | 32 bit | -      | -     | time, see beneath
+0x04-0x07      | 32 bit | little | float | longitude
+0x08-0x0b      | 32 bit | little | float | latitude
+0x0c-0x0c+1bit |  9 bit | big    | int   | speed
+0x0d+1bit-0x0e | 15 bit | big    | s-int | elevation
+0x0f           |  8 bit | -      | -     | not used?
 
 
 Each time entry (32 bit):
