@@ -36,7 +36,8 @@ from helper import verbose
 from helper import fprint
 
 #commands
-INIT_DOWNLOAD = '$1\r\n'
+INIT_DOWNLOAD_MAINNAV_MG_950D = '$1\r\n'
+INIT_DOWNLOAD_QSTART_BT_Q2000 = '$9\r\n'
 PURGE_LOG = '$2\r\n'
 CHECK_STATUS = '$3\r\n'
 DOWNLOAD_CHUNK = '\x15'
@@ -117,7 +118,8 @@ class Connection():
 		verbose('switching device to download mode.. ', newline=False)
 		chunks = math.ceil((self.logsize + 128) / 128.0)
 		chunk = 0
-		if OK in self._communicate(INIT_DOWNLOAD):
+		if OK in self._communicate(INIT_DOWNLOAD_MAINNAV_MG_950D) or \
+			OK in self._communicate(INIT_DOWNLOAD_QSTART_BT_Q2000):
 			verbose('ok')
 			buf = ''
 			while True:
