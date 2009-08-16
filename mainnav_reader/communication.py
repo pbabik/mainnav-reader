@@ -28,6 +28,7 @@
 #
 import time
 import serial
+import math
 
 from parser import _convert_4_byte_big_endian_to_uint as convert_logsize_value
 from helper import die
@@ -114,14 +115,14 @@ class Connection():
 	def download_data(self):
 		'''Download all tracklogs from the device.'''
 		verbose('switching device to download mode.. ', newline=False)
-		trackpoints = (self.logsize + 256) / 128
-		current_track = 0
+		chunks = math.ceil((self.logsize + 128) / 128.0)
+		chunk = 0
 		if OK in self._communicate(INIT_DOWNLOAD):
 			verbose('ok')
 			buf = ''
 			while True:
-				if current_track < trackpoints: # there is some data left
-					current_track += 1
+				if chunk < chunks: # there is some data left
+					chunk += 1
 					buf += self._communicate(DOWNLOAD_CHUNK, bytes=132)[3:-1]
 					fprint('\rdownloading: %s%%' % int((len(buf) / float(self.logsize)) * 100), newline=False)
 				else:
@@ -129,6 +130,7 @@ class Connection():
 						break
 					else:
 						die('\nerror while downloading tracklogs')
+						self._communicate(INIT_STANDARD, answer=False)
 			fprint('')
 			verbose('switching device back to standard mode.. ', newline=False)
 			self._communicate(INIT_STANDARD, answer=False)
