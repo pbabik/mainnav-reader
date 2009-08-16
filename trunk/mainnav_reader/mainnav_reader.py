@@ -43,7 +43,7 @@ def run():
 	helper.check_requirements()
 	args = _parse_args()
 	helper.verbose_ = args.verbose
-	con = communication.Connection(args.device, args.slow)
+	con = communication.Connection(args.device)
 	if con.open_connection() and con.check_device_status():
 		if args.download:
 			raw_data = con.download_data()
@@ -92,11 +92,6 @@ def _parse_args():
 	parser.add_option('-r', '--raw',
 		dest='raw',
 		help='store the raw binary data in the target directory (must be combined with the download option)',
-		action='store_true',
-		default=False)
-	parser.add_option('-s', '--slow',
-		dest='slow',
-		help='slower readout, for instance if the device is connected via bluetooth',
 		action='store_true',
 		default=False)
 	parser.add_option('-v', '--verbose',
