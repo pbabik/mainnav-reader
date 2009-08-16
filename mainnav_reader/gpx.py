@@ -27,7 +27,6 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 import xml.dom.minidom as minidom
-from helper import die
 
 def create_gpx_structure(track):
 	'''Create the gpx-xml structure and return it.

@@ -52,11 +52,9 @@ def die(msg):
 	@param msg: The message.'''
 	raise SystemExit(msg)
 
-
-# int2bin for python < 2.6
-
 def int2bin(n):
     '''convert denary integer n to binary string b.
+    Used for python versions below 2.6
     
     @param n: the denary integer.'''
     b = ''

@@ -52,8 +52,7 @@ class Connection():
 	'''Represents a connection to the device, either via USB or Bluetooth,
 	through a virtual serial port.
 	
-	@param port: The path to the port which represents the device.
-	@param slow: If set, the download-speed gets decreased.'''
+	@param port: The path to the port which represents the device.'''
 	def __init__(self, port):
 		try:
 			self.ser = serial.Serial(
