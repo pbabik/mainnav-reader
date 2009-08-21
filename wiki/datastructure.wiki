@@ -1,6 +1,5 @@
 #labels technical
-{{{
-MAINNAV MG-950d datastructure of tracklog data                         Version 1
+<pre>MAINNAV MG-950d datastructure of tracklog data                         Version 1
 
 Reverse engineered by Dennis Keitzel
 
@@ -61,4 +60,4 @@ Each time entry (32 bit):
 Note: It seems, that the chunk, next to the last with '\x04$FINISH\r\n', doesn't
       contain any necessary informations (0xFF all the way).
 
-}}}
+</pre>
