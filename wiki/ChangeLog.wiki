@@ -1,9 +1,11 @@
-= 0.3 (dev) =
+#labels Featured
+= 0.3 =
  * check requirements before compiling and program start
  * fixed interpretation of elevation data
  * Increased download-speed
  * Fixed hickups during download
  * No need for the parameter 'slow' anymore
+ * Added support for QStarz BT-Q2000 GPS-device
 
 = 0.2 =
  * Lowered Python dependency from version 2.6 to 2.5
