@@ -1,6 +1,6 @@
 #labels technical
 {{{
-MAINNAV MG-950d datastructure of tracklog data                         Version 1
+MAINNAV MG-950d datastructure of tracklog data                         Version 2
 
 Reverse engineered by Dennis Keitzel
 
