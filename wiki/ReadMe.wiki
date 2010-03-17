@@ -12,6 +12,8 @@ Download the latest version, extract the archive and run as root:
 
  * {{{python setup.py install}}}
 
+Informations about installing on MacOSX can be found in the [http://groups.google.com/group/mainnav-reader/browse_thread/thread/965e4971bac96176 mailinglist].
+
 = Usage =
 
 To test the connection, type in:
