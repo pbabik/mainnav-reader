@@ -1,4 +1,4 @@
-#summary Testing mainnav-reader on various distros due to issue #1
+#summary Testing mainnav-reader on various distros due to issue [http://code.google.com/p/mainnav-reader/issues/detail?id=1 #1]
 
 || *Distro* || *Version* || *Type* || *Working?* ||
 || Ubuntu || 9.04 || livecd || Yes ||
