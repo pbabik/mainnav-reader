@@ -1,6 +1,6 @@
 #summary Testing mainnav-reader on various distros due to issue #1
 
-|| *Distro* || *Version* || *Type* || *Working* ||
+|| *Distro* || *Version* || *Type* || *Working?* ||
 || Ubuntu || 9.04 || livecd || Yes ||
 || Ubuntu || 9.04 || installed & updated || Yes ||
 || Ubuntu || 9.10 || livecd || No  ||
