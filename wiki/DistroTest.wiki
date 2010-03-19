@@ -7,10 +7,12 @@
 || Ubuntu || 9.10 || installed-updated || Yes ||
 || Ubuntu || 10.4 || livecd-dev	 || Yes ||
 ||  ||  ||  ||  ||
+|| OpenSUSE || 11.1 || livecd ||  ||
 || OpenSUSE || 11.2 || livecd || No ||
 || OpenSUSE || 11.2 || installed-updated || Yes ||
 || OpenSUSE || 11.3 || livecd-dev || Yes ||
 ||  ||  ||  ||  ||
+|| Fedora || 11 || livecd ||  ||
 || Fedora || 12 || livecd || No ||
 || Fedora || 12 || installed-updated || No ||
 || Fedora || 13 || livecd-alpha || Yes ||
