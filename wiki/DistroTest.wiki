@@ -1,8 +1,8 @@
 #summary Testing mainnav-reader on various distros due to issue #1
 
 || *Distro* || *Version* || *Type* || *Working?* || /var/log/messages ||
-|| Ubuntu || 9.04 || livecd || Yes || [#Ubuntu-9.04-updated] ||
-|| Ubuntu || 9.04 || updated || Yes ||  ||
+|| Ubuntu || 9.04 || livecd || Yes ||  ||
+|| Ubuntu || 9.04 || updated || Yes || [#Ubuntu-9.04-updated] ||
 || Ubuntu || 9.10 || livecd || No  ||  ||
 || Ubuntu || 9.10 || updated || Yes ||  ||
 || Ubuntu || 10.4 || livecd-dev	 || Yes ||  ||
