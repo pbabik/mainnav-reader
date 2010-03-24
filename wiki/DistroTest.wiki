@@ -1,18 +1,18 @@
 #summary Testing mainnav-reader on various distros due to issue #1
 
-|| *Distro* || *Version* || *Type* || *Working?* ||
-|| Ubuntu || 9.04 || livecd || Yes ||
-|| Ubuntu || 9.04 || updated || Yes ||
-|| Ubuntu || 9.10 || livecd || No  ||
-|| Ubuntu || 9.10 || updated || Yes ||
-|| Ubuntu || 10.4 || livecd-dev	 || Yes ||
-||  ||  ||  ||  ||
-|| OpenSUSE || 11.1 || livecd || Yes ||
-|| OpenSUSE || 11.2 || livecd || No ||
-|| OpenSUSE || 11.2 || updated || Yes ||
-|| OpenSUSE || 11.3 || livecd-dev || Yes ||
-||  ||  ||  ||  ||
-|| Fedora || 11 || livecd || Yes ||
-|| Fedora || 12 || livecd || No ||
-|| Fedora || 12 || updated || No ||
-|| Fedora || 13 || livecd-alpha || Yes ||
+|| *Distro* || *Version* || *Type* || *Working?* || /var/log/messages ||
+|| Ubuntu || 9.04 || livecd || Yes || [#Log] ||
+|| Ubuntu || 9.04 || updated || Yes ||  ||
+|| Ubuntu || 9.10 || livecd || No  ||  ||
+|| Ubuntu || 9.10 || updated || Yes ||  ||
+|| Ubuntu || 10.4 || livecd-dev	 || Yes ||  ||
+||  ||  ||  ||  ||  ||
+|| OpenSUSE || 11.1 || livecd || Yes ||  ||
+|| OpenSUSE || 11.2 || livecd || No ||  ||
+|| OpenSUSE || 11.2 || updated || Yes ||  ||
+|| OpenSUSE || 11.3 || livecd-dev || Yes ||  ||
+||  ||  ||  ||  ||  ||
+|| Fedora || 11 || livecd || Yes ||  ||
+|| Fedora || 12 || livecd || No ||  ||
+|| Fedora || 12 || updated || No ||  ||
+|| Fedora || 13 || livecd-alpha || Yes ||  ||
