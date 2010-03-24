@@ -3,13 +3,13 @@
 || *Distro* || *Version* || *Type* || *Working?* || /var/log/messages ||
 || Ubuntu || 9.04 || livecd || Yes ||  ||
 || Ubuntu || 9.04 || updated || Yes || [#Ubuntu-9.04-updated] ||
-|| Ubuntu || 9.10 || livecd || No  || #[Ubuntu-9.10-livecd-notworking] ||
-|| Ubuntu || 9.10 || updated || Yes || #[Ubuntu-9.10-updated-working] ||
+|| Ubuntu || 9.10 || livecd || No  || [#Ubuntu-9.10-livecd-notworking] ||
+|| Ubuntu || 9.10 || updated || Yes || [#Ubuntu-9.10-updated-working] ||
 || Ubuntu || 10.4 || livecd-dev	 || Yes ||  ||
 ||  ||  ||  ||  ||  ||
 || OpenSUSE || 11.1 || livecd || Yes ||  ||
-|| OpenSUSE || 11.2 || livecd || No || #[OpenSUSE-11.2-livecd-notworking] ||
-|| OpenSUSE || 11.2 || updated || Yes || #[OpenSUSE-11.2-updated-working] ||
+|| OpenSUSE || 11.2 || livecd || No || [#OpenSUSE-11.2-livecd-notworking] ||
+|| OpenSUSE || 11.2 || updated || Yes || [#OpenSUSE-11.2-updated-working] ||
 || OpenSUSE || 11.3 || livecd-dev || Yes ||  ||
 ||  ||  ||  ||  ||  ||
 || Fedora || 11 || livecd || Yes ||  ||
