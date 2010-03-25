@@ -117,8 +117,10 @@ class Connection():
 
 	def download_data(self):
 		'''Download all tracklogs from the device.'''
+		self.check_if_device_is_empty()
 		verbose('switching device to download mode.. ', newline=False)
 		chunks = math.ceil((self.logsize + 128) / 128.0)
+		size_of_chunks = chunks * 128
 		chunk = 0
 		if OK in self._communicate(INIT_DOWNLOAD_MAINNAV_MG_950D) or \
 			OK in self._communicate(INIT_DOWNLOAD_QSTART_BT_Q2000):
@@ -128,13 +130,13 @@ class Connection():
 				if chunk < chunks: # there is some data left
 					chunk += 1
 					buf += self._communicate(DOWNLOAD_CHUNK, bytes=132)[3:-1]
-					fprint('\rdownloading: %s%%' % int((len(buf) / float(self.logsize)) * 100), newline=False)
+					fprint('\rdownloading: %s%%' % int((len(buf) / float(size_of_chunks)) * 100), newline=False)
 				else:
 					if FINISH in self._communicate(DOWNLOAD_CHUNK, bytes=10):
 						break
 					else:
-						die('\nerror while downloading tracklogs')
 						self._communicate(INIT_STANDARD, answer=False)
+						die('\nerror while downloading tracklogs')
 			fprint('')
 			verbose('switching device back to standard mode.. ', newline=False)
 			self._communicate(INIT_STANDARD, answer=False)
@@ -145,6 +147,7 @@ class Connection():
 			
 	def purge_log_on_device(self):
 		'''Delete all tracklogs from the device.'''
+		self.check_if_device_is_empty()
 		fprint('purge log on device.. ', newline=False)
 		buf = self._communicate(PURGE_LOG)
 		if OK not in buf:
@@ -154,3 +157,7 @@ class Connection():
 				time.sleep(1)
 				buf += self.ser.read(self.ser.inWaiting())
 			fprint('ok')
+			
+	def check_if_device_is_empty(self):
+		if self.logsize == 8192:
+			die('there aren\'t stored any tracklogs on the device, exiting..')
