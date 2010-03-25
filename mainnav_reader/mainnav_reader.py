@@ -45,27 +45,29 @@ def run():
 	helper.verbose_ = args.verbose
 	con = communication.Connection(args.device)
 	if con.open_connection() and con.check_device_status():
-		if args.download:
+		if args.memory:
+			used = (con.logsize - 8192) / 2080000.0 * 100
+			print 'memory usage: %.1f%%' % used
+			points_remaining = (2080000 - (con.logsize - 8192)) / 16
+			time_remaining = points_remaining / 60.0 / 60.0
+			print '%s points or %.1f hours remaining' % (points_remaining, time_remaining)
+		elif args.download:
 			raw_data = con.download_data()
 			con.close_connection()
 			if args.raw:
 				_write(((raw_data, 'trackdata.bin'),), args.target_dir)
 			else:
 				tracks = parser.parse(raw_data, con.logsize)
-				if tracks:
-					i = 1
-					gpx_structures = []
-					for track in tracks:
-						verbose('creating gpx structure for track #%s.. ' % i, newline=False)
-						gpx_structure = gpx.create_gpx_structure(track)
-						date = track[0]['time'].strftime('%y-%m-%d_%H:%M')
-						gpx_structures.append((gpx_structure, 'track_%s.gpx' % date))
-						verbose('ok')
-						i += 1
-					_write(gpx_structures, args.target_dir)
-				else:
-					print('! tracklog memory is empty !')
-					
+				i = 1
+				gpx_structures = []
+				for track in tracks:
+					verbose('creating gpx structure for track #%s.. ' % i, newline=False)
+					gpx_structure = gpx.create_gpx_structure(track)
+					date = track[0]['time'].strftime('%y-%m-%d_%H:%M')
+					gpx_structures.append((gpx_structure, 'track_%s.gpx' % date))
+					verbose('ok')
+					i += 1
+				_write(gpx_structures, args.target_dir)
 		elif args.purge:
 			con.purge_log_on_device()
 			con.close_connection()
@@ -94,6 +96,11 @@ def _parse_args():
 		help='store the raw binary data in the target directory (must be combined with the download option)',
 		action='store_true',
 		default=False)
+	parser.add_option('-m', '--memory',
+		dest='memory',
+		help='show the amount of memory in use',
+		action='store_true',
+		default=False)
 	parser.add_option('-v', '--verbose',
 		dest='verbose',
 		help='be verbose',
@@ -110,6 +117,10 @@ def _parse_args():
 		parser.error('please specify device path, for example \'/dev/ttyUSB0\'')
 	if options.download and options.purge:
 		parser.error('options -d and -p are mutually exclusive')
+	if options.download and options.memory:
+		parser.error('options -d and -m are mutually exclusive')
+	if options.memory and options.purge:
+		parser.error('options -m and -p are mutually exclusive')
 
 	return options
 
