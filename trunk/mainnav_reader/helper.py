@@ -63,7 +63,7 @@ def int2bin(n):
     while n > 0:
         b = '%s%s' % (str(n % 2), b)
         n = n >> 1
-    return b
+    return '0b%s' % b
 
 def check_requirements():
 	'''Check if all requirements are met.'''
