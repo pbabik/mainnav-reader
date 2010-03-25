@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 #
-# mainnav-reader - Version: 0.3
+# mainnav-reader - Version: 0.4
 
-# Copyright (c) 2009, Dennis Keitzel
+# Copyright (c) 2010, Dennis Keitzel
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
