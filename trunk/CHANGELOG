@@ -1,3 +1,5 @@
+0.4  - 
+
 0.3: - Check requirements before compiling and program start
      - Fixed interpretation of elevation data
      - Increased download-speed

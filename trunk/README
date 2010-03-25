@@ -1,4 +1,4 @@
-mainnav-reader - version 0.3 - readme
+mainnav-reader - version 0.4 - readme
 
 This tiny tool reads out and deletes tracklog data from mainnav gps devices
 under linux. It can speak to your device either via USB or Bluetooth.
@@ -12,6 +12,8 @@ Installation:
 Download the latest version, extract the archive and run as root:
 
  * python setup.py install
+ 
+Informations about installing on MacOSX can be found on the mailinglist.
 
 
 Usage:
