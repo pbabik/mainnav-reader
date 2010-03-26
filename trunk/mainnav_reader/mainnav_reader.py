@@ -46,6 +46,7 @@ def run():
 	con = communication.Connection(args.device)
 	if con.open_connection() and con.check_device_status():
 		if args.memory:
+			con.close_connection()
 			used = (con.logsize - 8192) / 2080000.0 * 100
 			print 'memory usage: %.1f%%' % used
 			points_remaining = (2080000 - (con.logsize - 8192)) / 16
@@ -72,6 +73,7 @@ def run():
 			con.purge_log_on_device()
 			con.close_connection()
 		else:
+			con.close_connection()
 			print('nothing to do..')
 
 def _parse_args():
