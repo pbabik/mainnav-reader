@@ -66,6 +66,11 @@ class Connection():
 		except serial.serialutil.SerialException, e:
 			die('error: %s' % e)
 		self.logsize = 0
+		
+	def __del__(self):
+		'''Close the connection if it's still open.'''
+		if self.ser.isOpen():
+			self.close_connection()
 
 	def _communicate(self, command, answer=True, bytes=None):
 		'''Talk to the device and return the answer.
@@ -160,4 +165,4 @@ class Connection():
 			
 	def check_if_device_is_empty(self):
 		if self.logsize == 8192:
-			die('there aren\'t stored any tracklogs on the device, exiting..')
+			die('there aren\'t stored any tracklogs on the device')
