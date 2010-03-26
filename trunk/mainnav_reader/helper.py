@@ -59,7 +59,7 @@ def int2bin(n):
     @param n: the denary integer.'''
     b = ''
     if n < 0:  raise ValueError, 'must be a positive integer'
-    if n == 0: return '0'
+    if n == 0: return '0b0'
     while n > 0:
         b = '%s%s' % (str(n % 2), b)
         n = n >> 1
