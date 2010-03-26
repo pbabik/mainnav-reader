@@ -69,8 +69,11 @@ class Connection():
 		
 	def __del__(self):
 		'''Close the connection if it's still open.'''
-		if self.ser.isOpen():
-			self.close_connection()
+		try:
+			if self.ser.isOpen():
+				self.close_connection()
+		except AttributeError:
+			pass
 
 	def _communicate(self, command, answer=True, bytes=None):
 		'''Talk to the device and return the answer.
