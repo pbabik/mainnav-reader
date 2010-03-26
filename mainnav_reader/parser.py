@@ -113,7 +113,7 @@ def _convert_speed(bin_data):
 	has the size of 2 byte, but only the first 9 bit are interpreted.
 	
 	@param bin_data: 2 byte binary data.'''
-	return ord(bin_data[0]) + int(bin(ord(bin_data[1]))[:3], 2)
+	return ord(bin_data[0]) + int(bin(ord(bin_data[1]))[2:3], 2)
 
 def _convert_elevation(bin_data):
 	'''Convert the elevation from 15 bit binary big endian to signed int. Only
