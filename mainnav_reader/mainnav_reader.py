@@ -50,7 +50,7 @@ def run():
 			used = (con.logsize - 8192) / 2080000.0 * 100
 			print 'memory usage: %.1f%%' % used
 			points_remaining = (2080000 - (con.logsize - 8192)) / 16
-			time_remaining = points_remaining / 60.0 / 60.0
+			time_remaining = points_remaining / 3600.0
 			print '%s points or %.1f hours of tracking remaining' % (points_remaining, time_remaining)
 		elif args.download:
 			raw_data = con.download_data()
