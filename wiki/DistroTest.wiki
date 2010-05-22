@@ -16,7 +16,8 @@
 || Fedora || 12 || livecd || No ||  ||
 || Fedora || 12 || updated || No ||  ||
 || Fedora || 13 || livecd-alpha || Yes ||  ||
-
+||  ||  ||  ||  ||  ||
+|| Mandriva || 2010 spring || livecd-rc || Yes ||  ||
 
 === Ubuntu-9.04-updated-working ===
 {{{
