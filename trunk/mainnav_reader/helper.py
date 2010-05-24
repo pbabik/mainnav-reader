@@ -53,17 +53,17 @@ def die(msg):
 	raise SystemExit(msg)
 
 def int2bin(n):
-    '''convert denary integer n to binary string b.
-    Used for python versions below 2.6
-    
-    @param n: the denary integer.'''
-    b = ''
-    if n < 0:  raise ValueError, 'must be a positive integer'
-    if n == 0: return '0b0'
-    while n > 0:
-        b = '%s%s' % (str(n % 2), b)
-        n = n >> 1
-    return '0b%s' % b
+	'''convert denary integer n to binary string b.
+	Used for python versions below 2.6
+	
+	@param n: the denary integer.'''
+	b = ''
+	if n < 0:  raise ValueError, 'must be a positive integer'
+	if n == 0: return '0b0'
+	while n > 0:
+		b = '%s%s' % (str(n % 2), b)
+		n = n >> 1
+	return '0b%s' % b
 
 def check_requirements():
 	'''Check if all requirements are met.'''
