@@ -28,6 +28,9 @@ Each offset information (16 byte):
 0x00-0x02 |  3 byte | little | end offset of that tracklog
 0x03-0x0f | 13 byte | -      | not used?
 
+Note: On devices newer than MG-950dm the size of the end-offsets is 4 bytes
+      each. The reason for this is an increase in the amount of memory (2>4MB)
+
 
 From offset 0x2000 on, the tracklog data is stored. A tracklog consist of
 multiple log entries, each of them has 16 byte.
