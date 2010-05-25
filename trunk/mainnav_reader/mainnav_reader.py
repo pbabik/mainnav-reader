@@ -58,7 +58,7 @@ def run():
 			if args.raw:
 				_write(((raw_data, 'trackdata.bin'),), args.target_dir)
 			else:
-				tracks = parser.parse(raw_data, con.logsize)
+				tracks = parser.parse(raw_data, con.logsize, args.utc_offset)
 				i = 1
 				gpx_structures = []
 				for track in tracks:
@@ -93,6 +93,11 @@ def _parse_args():
 		dest='target_dir',
 		help='target directory for downloaded tracklogs [default: %default]',
 		default='%s/mainnav-tracklogs/' % os.environ.get('HOME', tempfile.gettempdir()))
+	parser.add_option('-u', '--utc',
+		dest='utc_offset',
+		help='generate GPX time entry in UTC by declaring the offset (your timezone, e.g. -5 or +9.5)',
+		type='float',
+		default=False)
 	parser.add_option('-r', '--raw',
 		dest='raw',
 		help='store the raw binary data in the target directory (must be combined with the download option)',

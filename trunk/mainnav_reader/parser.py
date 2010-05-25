@@ -35,7 +35,7 @@ from helper import verbose
 if sys.version_info < (2, 6):
 	from helper import int2bin as bin
 
-def parse(data, logsize):
+def parse(data, logsize, utc_offset):
 	'''Main parse function to extract the needed information out of the binary
 	data and return the extracted tracks as a list.
 	
@@ -46,7 +46,7 @@ def parse(data, logsize):
 	if end_offsets_raw:
 		end_offsets = _interprete_end_offsets_raw(end_offsets_raw)
 		tracks_raw = _parse_tracklogs(data, end_offsets, logsize)
-		tracks = _interprete_tracks_raw(tracks_raw)
+		tracks = _interprete_tracks_raw(tracks_raw, utc_offset)
 		verbose('ok')
 		return tracks
 	else:
@@ -93,7 +93,7 @@ def _parse_tracklogs(data, end_offsets, logsize):
 	tracks.append(track) # add last track
 	return tracks
 
-def _interprete_tracks_raw(tracks_raw):
+def _interprete_tracks_raw(tracks_raw, utc_offset):
 	'''Convert the binary points of the tracks to points with real values.
 	
 	@param tracks_raw: The list of the tracks in binary form.'''
@@ -102,7 +102,14 @@ def _interprete_tracks_raw(tracks_raw):
 		track = []
 		for point_raw in track_raw:
 			point = {}
-			point['time'] = _convert_time(point_raw[0:4])
+			if utc_offset:
+				hours = int(utc_offset)
+				minutes = int(round((utc_offset - hours) * 60))
+				localtime = _convert_time(point_raw[0:4])
+				datetime_ = localtime - datetime.timedelta(hours=hours, minutes=minutes)
+			else:
+				datetime_ = _convert_time(point_raw[0:4])
+			point['time'] = datetime_
 			point['longitude'] = _convert_4_byte_little_endian_to_float(point_raw[4:8])
 			point['latitude'] = _convert_4_byte_little_endian_to_float(point_raw[8:12])
 			point['speed'] = _convert_speed(point_raw[12:14])
