@@ -1,4 +1,4 @@
-dev  - Added support for Mainnav MG-950DM
+0.5-dev - Added support for Mainnav MG-950DM
 
 0.4  - Added display of memory usage
      - Fixed percentage-display of downloadstatus, values > 100% were possible
