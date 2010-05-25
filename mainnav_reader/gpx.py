@@ -48,7 +48,7 @@ def create_gpx_structure(track):
 	name = doc.createElement('name')
 	trk.appendChild(name)
 		
-	name_txt = doc.createTextNode('track_%s' % track[0]['time'].isoformat())
+	name_txt = doc.createTextNode('track_%sZ' % track[0]['time'].isoformat())
 	name.appendChild(name_txt)
 	
 	trkseg = doc.createElement('trkseg')
@@ -67,7 +67,7 @@ def create_gpx_structure(track):
 		
 		time = doc.createElement('time')
 		trkpt.appendChild(time)
-		time_txt = doc.createTextNode('%s' % point['time'].isoformat())
+		time_txt = doc.createTextNode('%sZ' % point['time'].isoformat())
 		time.appendChild(time_txt)
 		
 	return doc.toprettyxml(indent='  ', encoding='UTF-8')
