@@ -40,8 +40,8 @@ INIT_DOWNLOAD_MAINNAV_MG_950D = '$1\r\n'
 INIT_DOWNLOAD_QSTART_BT_Q2000 = '$9\r\n'
 PURGE_LOG = '$2\r\n'
 CHECK_STATUS = '$3\r\n'
-DOWNLOAD_CHUNK = '\x15'
-DOWNLOAD_CHUNK_COUNTER = '\x06'
+DOWNLOAD_CHUNK_FIRST = '\x15'
+DOWNLOAD_CHUNK_NEXT = '\x06'
 ABORT_TRANSMISSION = '\x18'
 INIT_STANDARD = '\x0f\x06'
 
@@ -127,31 +127,26 @@ class Connection():
 		'''Download all tracklogs from the device.'''
 		self.check_if_device_is_empty()
 		verbose('switching device to download mode.. ', newline=False)
-		chunks = math.ceil((self.logsize + 128) / 128.0)
+		chunks = int(math.ceil(self.logsize / 128.0))
 		size_of_chunks = chunks * 128
-		chunk = 0
 		if OK in self._communicate(INIT_DOWNLOAD_MAINNAV_MG_950D) or \
 			OK in self._communicate(INIT_DOWNLOAD_QSTART_BT_Q2000):
 			verbose('ok')
 			buf = ''
-			while True:
-				if chunk < chunks: # there is some data left
-					chunk += 1
-					buf += self._communicate(DOWNLOAD_CHUNK, bytes=132)[3:-1]
-					fprint('\rdownloading: %s%%' % int((len(buf) / float(size_of_chunks)) * 100), newline=False)
-				else:
-					if FINISH in self._communicate(DOWNLOAD_CHUNK, bytes=10):
-						break
-					else:
-						self._communicate(INIT_STANDARD, answer=False)
-						die('\nerror while downloading tracklogs')
+			# download first chunk:
+			chunk = 1
+			buf += self._communicate(DOWNLOAD_CHUNK_FIRST, bytes=132)[3:-1]
+			while chunk < chunks: # download remaining chunks
+				chunk += 1
+				buf += self._communicate(DOWNLOAD_CHUNK_NEXT, bytes=132)[3:-1]
+				fprint('\rdownloading: %s%%' % int((len(buf) / float(size_of_chunks)) * 100), newline=False)
 			fprint('')
 			verbose('switching device back to standard mode.. ', newline=False)
 			self._communicate(INIT_STANDARD, answer=False)
 			verbose('ok')
 			return buf
 		else:
-			fprint('error')
+			fprint('error, unknown device')
 			
 	def purge_log_on_device(self):
 		'''Delete all tracklogs from the device.'''
