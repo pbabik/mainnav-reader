@@ -60,9 +60,12 @@ def _parse_tracklog_ends_offsets(data):
 	@param data: The tracklog binary data'''
 	end_offsets = []
 	for i in xrange(0, 8192, 16):
-		offset_entry = data[i:i + 3]
-		if offset_entry == '\xff\xff\xff':
-			break
+		offset_entry = data[i:i + 4]
+		if offset_entry == '\xff\xff\xff\xff':
+			break # no more offsets remaining
+		if offset_entry[-1] == '\xff':
+			# devices with 2 MB memory only have 3 bytes for offsets
+			offset_entry = '%s\x00' % offset_entry[:-1]
 		end_offsets.append(offset_entry)
 	return end_offsets
 
@@ -70,7 +73,7 @@ def _interprete_end_offsets_raw(end_offsets_raw):
 	'''Convert the binary offset values into real integer values.
 	
 	@param end_offsets_raw: The offsets in binary format.'''
-	return [_convert_3_byte_little_endian_to_uint(entry) for entry in end_offsets_raw]
+	return [_convert_4_byte_little_endian_to_uint(entry) for entry in end_offsets_raw]
 
 def _parse_tracklogs(data, end_offsets, logsize):
 	'''Extract the particual tracklogs and return them in binary as a list.
@@ -156,8 +159,8 @@ def _convert_time(data):
 def _convert_4_byte_big_endian_to_uint(data):
 	return struct.unpack('>I', data)[0]
 
-def _convert_3_byte_little_endian_to_uint(data):
-	return struct.unpack('<I', '%s\x00' % data)[0]
+def _convert_4_byte_little_endian_to_uint(data):
+	return struct.unpack('<I', data)[0]
 
 def _convert_4_byte_little_endian_to_float(data):
 	return struct.unpack('<f', data)[0]
