@@ -141,6 +141,8 @@ class Connection():
 				buf += self._communicate(DOWNLOAD_CHUNK_NEXT, bytes=132)[3:-1]
 				fprint('\rdownloading: %s%%' % int((len(buf) / float(size_of_chunks)) * 100), newline=False)
 			fprint('')
+			# only unnecessary data left, aborting:
+			self._communicate(ABORT_TRANSMISSION, answer=False)
 			verbose('switching device back to standard mode.. ', newline=False)
 			self._communicate(INIT_STANDARD, answer=False)
 			verbose('ok')
