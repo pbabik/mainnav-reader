@@ -1,4 +1,4 @@
-#summary speed tag
+#summary where are the speed tags?
 
 Some users requested a speed tag within the resulting gpx file. But since the speed is calculated from distance and time it's not part of the official gpx specifications.
 
