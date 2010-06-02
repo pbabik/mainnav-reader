@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# mainnav-reader - Version: 0.5-dev
+# mainnav-reader - Version: 0.5
 #
 # Copyright (c) 2009-2010, Dennis Keitzel
 # All rights reserved.
@@ -37,7 +37,7 @@ if sys.argv[1] == 'install':
 
 setup(
      name='mainnav-reader',
-     version='0.4',
+     version='0.5',
      author='Dennis Keitzel',
      author_email='dennis.keitzel@arcor.de',
      url='http://code.google.com/p/mainnav-reader/',

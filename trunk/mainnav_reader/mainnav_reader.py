@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# mainnav-reader - Version: 0.5-dev
+# mainnav-reader - Version: 0.5
 #
 # Copyright (c) 2009-2010, Dennis Keitzel
 # All rights reserved.
@@ -78,7 +78,7 @@ def run():
 
 def _parse_args():
 	'''Parse the command-line arguments.'''
-	parser = OptionParser(usage='%prog [Options] <device>', version='%prog 0.5-dev')
+	parser = OptionParser(usage='%prog [Options] <device>', version='%prog 0.5')
 	parser.add_option('-p', '--purge',
 		dest='purge',
 		help='purge the tracklog memory on the device',
