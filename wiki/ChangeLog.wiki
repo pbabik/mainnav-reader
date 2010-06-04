@@ -1,7 +1,7 @@
 #labels Featured
 = 0.5 =
  * Added support for Mainnav MG-950DM and Mainnav MW-705
- * Added possibility to generate GPX with UTC time-values
+ * Added ability to generate GPX with UTC time-values
 
 = 0.4 =
  * Added display of memory usage
