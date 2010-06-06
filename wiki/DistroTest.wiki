@@ -1,23 +1,23 @@
 #summary Testing mainnav-reader on various distros due to issue #1
 
-|| *Distro* || *Version* || *Type* || *Working?* || /var/log/messages ||
-|| Ubuntu || 9.04 || livecd || Yes ||  ||
-|| Ubuntu || 9.04 || updated || Yes || [#Ubuntu-9.04-updated] ||
-|| Ubuntu || 9.10 || livecd || No  || [#Ubuntu-9.10-livecd-notworking] ||
-|| Ubuntu || 9.10 || updated || Yes || [#Ubuntu-9.10-updated-working] ||
-|| Ubuntu || 10.4 || livecd-dev	 || Yes ||  ||
-||  ||  ||  ||  ||  ||
-|| OpenSUSE || 11.1 || livecd || Yes ||  ||
-|| OpenSUSE || 11.2 || livecd || No || [#OpenSUSE-11.2-livecd-notworking] ||
-|| OpenSUSE || 11.2 || updated || Yes || [#OpenSUSE-11.2-updated-working] ||
-|| OpenSUSE || 11.3 || livecd-dev || Yes ||  ||
-||  ||  ||  ||  ||  ||
-|| Fedora || 11 || livecd || Yes ||  ||
-|| Fedora || 12 || livecd || No ||  ||
-|| Fedora || 12 || updated || No ||  ||
-|| Fedora || 13 || livecd-alpha || Yes ||  ||
-||  ||  ||  ||  ||  ||
-|| Mandriva || 2010 spring || livecd-rc || Yes ||  ||
+|| *Distro* || *Version* || *Kernel* || *Type* || *Working?* || /var/log/messages ||
+|| Ubuntu || 9.04 || 2.6.28 || livecd || Yes ||  ||
+|| Ubuntu || 9.04 || 2.6.28 || updated || Yes || [#Ubuntu-9.04-updated] ||
+|| Ubuntu || 9.10 || 2.6.31 || livecd || No  || [#Ubuntu-9.10-livecd-notworking] ||
+|| Ubuntu || 9.10 || 2.6.31 || updated || Yes || [#Ubuntu-9.10-updated-working] ||
+|| Ubuntu || 10.4 || 2.6.32 || livecd-dev || Yes ||  ||
+||  ||  ||  ||  ||  ||  ||
+|| OpenSUSE || 11.1 || 2.6.27 || livecd || Yes ||  ||
+|| OpenSUSE || 11.2 || 2.6.31 || livecd || No || [#OpenSUSE-11.2-livecd-notworking] ||
+|| OpenSUSE || 11.2 || 2.6.31 || updated || Yes || [#OpenSUSE-11.2-updated-working] ||
+|| OpenSUSE || 11.3 || 2.6.33 || livecd-dev || Yes ||  ||
+||  ||  ||  ||  ||  ||  ||
+|| Fedora || 11 || 2.6.29 || livecd || Yes ||  ||
+|| Fedora || 12 || 2.6.31 || livecd || No ||  ||
+|| Fedora || 12 || 2.6.31 || updated || No ||  ||
+|| Fedora || 13 || 2.6.33 || livecd-alpha || Yes ||  ||
+||  ||  ||  ||  ||  ||  ||
+|| Mandriva || 2010 spring || 2.6.33 || livecd-rc || Yes ||  ||
 
 === Ubuntu-9.04-updated-working ===
 {{{
