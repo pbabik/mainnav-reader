@@ -1,5 +1,7 @@
 #summary Testing mainnav-reader on various distros due to issue #1
 
+Found the problem: https://bugs.launchpad.net/ubuntu/+source/linux/+bug/460857
+
 || *Distro* || *Version* || *Kernel* || *Type* || *Working?* || /var/log/messages ||
 || Ubuntu || 9.04 || 2.6.28 || livecd || Yes ||  ||
 || Ubuntu || 9.04 || 2.6.28 || updated || Yes || [#Ubuntu-9.04-updated] ||
