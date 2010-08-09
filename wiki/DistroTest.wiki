@@ -13,6 +13,7 @@ Found the problem: https://bugs.launchpad.net/ubuntu/+source/linux/+bug/460857
 || OpenSUSE || 11.2 || 2.6.31 || livecd || No || [#OpenSUSE-11.2-livecd-notworking] ||
 || OpenSUSE || 11.2 || 2.6.31 || updated || Yes || [#OpenSUSE-11.2-updated-working] ||
 || OpenSUSE || 11.3 || 2.6.33 || livecd-dev || Yes ||  ||
+|| OpenSUSE || 11.3 || 2.6.34 || ? || Yes ||  ||
 ||  ||  ||  ||  ||  ||  ||
 || Fedora || 11 || 2.6.29 || livecd || Yes ||  ||
 || Fedora || 12 || 2.6.31 || livecd || No ||  ||
