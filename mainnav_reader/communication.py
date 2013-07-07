@@ -97,7 +97,9 @@ class Connection():
 	def open_connection(self):
 		'''Open the connection to the device.'''
 		verbose('opening \'%s\'.. ' % self.ser.port, newline=False)
-		self.ser.open()
+		already_open = self.ser.isOpen()
+		if not already_open:
+			self.ser.open()
 		success = self.ser.isOpen()
 		verbose('ok' if success else 'error')
 		return success
