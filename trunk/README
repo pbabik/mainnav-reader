@@ -1,4 +1,4 @@
-mainnav-reader - version 0.5 - readme
+mainnav-reader - version 0.5.1 - readme
 
 This tiny tool reads out and deletes tracklog data from mainnav gps devices
 under linux. It can speak to your device either via USB or Bluetooth.
