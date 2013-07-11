@@ -1,4 +1,7 @@
 #labels Featured
+= 0.5.1 =
+ * Make sure the port is not already opened, fixes issue #7
+
 = 0.5 =
  * Added support for Mainnav MG-950DM and Mainnav MW-705
  * Added ability to generate GPX with UTC time-values
